@@ -42,8 +42,5 @@ public class MonoPlayer : MonoBehaviour
         _rb.velocity = new Vector2(_movementDirection * _movementSpeed, _rb.velocity.y);
     }
 
-
-
-
     public enum PlayerType { First, Second }
 }
