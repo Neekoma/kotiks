@@ -7,8 +7,21 @@ public class MonoPlayer : MonoBehaviour
     private Player _meta;
 
     private PlayerInputHandler _input;
-    private float _movementDirection;
 
+    [Header("Ground check")]
+    [Space(5)]
+    [SerializeField]
+    private Transform _groundCheck;
+
+    [SerializeField]
+    private float _groundCheckRadius;
+
+    [SerializeField]
+    private LayerMask _whatIsGround;
+
+
+    [Header("Player properties")]
+    [Space(5)]
     [SerializeField]
     private PlayerType _playerType;
 
@@ -18,11 +31,17 @@ public class MonoPlayer : MonoBehaviour
     [SerializeField]
     private Rigidbody2D _rb;
 
+    [Header("Movement")]
+    [Space(5)]
+
     [SerializeField]
     private float _movementSpeed;
 
     [SerializeField]
     private float _jumpForce;
+
+    private bool _isGrounded;
+
 
     private void Awake()
     {
@@ -34,12 +53,35 @@ public class MonoPlayer : MonoBehaviour
 
     private void Update()
     {
-        _movementDirection = _input.HandleInput();
+        _input.HandleInput();
+
+        if (_input.jump == true) {
+            Jump();
+        }
     }
 
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector2(_movementDirection * _movementSpeed, _rb.velocity.y);
+        CheckGround();
+
+        Move();
+    }
+
+    private void CheckGround() {
+        _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, _groundCheckRadius, _whatIsGround);
+    }
+
+    private void Move()
+    {
+        _rb.velocity = new Vector2(_input.moveDirection * _movementSpeed, _rb.velocity.y);
+    }
+
+    private void Jump()
+    {
+        if (_isGrounded)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+        }
     }
 
     public enum PlayerType { First, Second }

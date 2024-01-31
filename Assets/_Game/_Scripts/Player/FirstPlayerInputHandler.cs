@@ -2,8 +2,9 @@
 
 public class FirstPlayerInputHandler : PlayerInputHandler
 {
-    public override float HandleInput()
+    public override void HandleInput()
     {
-        return Input.GetAxisRaw("Player1");
+        moveDirection = Input.GetAxis("Player1");
+        jump = Input.GetKeyDown(KeyCode.Space);
     }
 }

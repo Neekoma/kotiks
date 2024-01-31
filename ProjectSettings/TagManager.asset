@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Interactible
   layers:
   - Default
   - TransparentFX
@@ -13,13 +14,13 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Enemy
+  - Player
+  - InspectObject
+  - PostProcessing
+  - TrapsAndActivators
+  - InteractedObjects
   - 
   - 
   - 
@@ -40,4 +41,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Timemap_background
+    uniqueID: 1802038029
+    locked: 0
+  - name: Tilemap_background_detail
+    uniqueID: 2036986375
+    locked: 0
+  - name: Tilemap_foreground
+    uniqueID: 2446026597
+    locked: 0
+  - name: Tilemap_shadows
+    uniqueID: 1078061071
+    locked: 0
+  - name: TrapsAndActivators
+    uniqueID: 813247263
+    locked: 0
+  - name: Player
+    uniqueID: 1656354355
+    locked: 0
+  - name: InteractedObjects
+    uniqueID: 1917986899
     locked: 0

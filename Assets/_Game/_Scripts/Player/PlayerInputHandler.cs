@@ -1,4 +1,7 @@
 ﻿public abstract class PlayerInputHandler
 {
-    public abstract float HandleInput();
+    public float moveDirection { get; protected set; }
+    public bool jump { get; protected set; }
+
+    public abstract void HandleInput();
 }

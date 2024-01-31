@@ -2,8 +2,9 @@
 
 public class SecondPlayerInputHandler : PlayerInputHandler
 {
-    public override float HandleInput()
+    public override void HandleInput()
     {
-        return Input.GetAxisRaw("Player2");
+        moveDirection = Input.GetAxis("Player2");
+        jump = Input.GetKeyDown(KeyCode.RightControl);
     }
 }
