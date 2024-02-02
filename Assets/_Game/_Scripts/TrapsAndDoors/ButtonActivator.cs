@@ -35,7 +35,6 @@ namespace Vald
             _isActive = true;
             MoveTween(_activatedPosition);
             OnActivation?.Invoke();
-            Debug.Log("Activation");
         }
 
         public override void Deactivation()
@@ -43,7 +42,6 @@ namespace Vald
             _isActive = false;
             MoveTween(_deactivatedPosition);
             OnDeactivation?.Invoke();
-            Debug.Log("Deactivation");
         }
 
         private void Start()
@@ -74,7 +72,6 @@ namespace Vald
                 DOTween.KillAll();
 
             transform.DOLocalMove(target, 1);
-
         }
 
         private void OnDrawGizmos()
