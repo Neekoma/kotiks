@@ -176,7 +176,7 @@ MonoBehaviour:
   _activatedPosition: {x: 0, y: 0.28}
   _whatCanPressOnButton:
     serializedVersion: 2
-    m_Bits: 17408
+    m_Bits: 17920
   _isActive: 0
   _overlapRadius: 0.6
   OnActivation:
@@ -242,7 +242,7 @@ Transform:
   m_Children:
   - {fileID: 7392120434667178409}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8817940234778436347
 SpriteRenderer:
