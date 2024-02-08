@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,6 +19,10 @@ namespace Vald
         private LayerMask _whatCanPressOnButton;
 
         [SerializeField]
+        private bool _isPressedOnStart;
+
+        private bool _isFreeToInteract; // pressed on start only
+
         private bool _isActive;
 
         [SerializeField]
@@ -33,20 +38,24 @@ namespace Vald
         public override void Activation()
         {
             _isActive = true;
-            MoveTween(_activatedPosition);
             OnActivation?.Invoke();
         }
 
         public override void Deactivation()
         {
             _isActive = false;
-            MoveTween(_deactivatedPosition);
             OnDeactivation?.Invoke();
         }
 
         private void Start()
         {
-            transform.localPosition = _deactivatedPosition;
+            StartSetup();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.G))
+                FreeToInteract();
         }
 
         private void FixedUpdate()
@@ -56,13 +65,21 @@ namespace Vald
 
         private void CheckPressure()
         {
-            if (_isActive == false && overlap != null)
+            if (_isFreeToInteract)
             {
-                Activation();
-            }
-            else if (_isActive == true && overlap == null)
-            {
-                Deactivation();
+                if (_isActive == false && overlap != null)
+                {
+                    Activation();
+
+                    MoveTween(_activatedPosition);
+                }
+
+                else if (_isActive == true && overlap == null)
+                {
+                    Deactivation();
+
+                    MoveTween(_deactivatedPosition);
+                }
             }
         }
 
@@ -72,6 +89,38 @@ namespace Vald
                 DOTween.KillAll();
 
             transform.DOLocalMove(target, 1);
+        }
+
+        private void StartSetup()
+        {
+            if (_isPressedOnStart)
+                SetupToPressed();
+            else
+                SetupToDefault();
+        }
+
+        private void SetupToDefault()
+        {
+            transform.localPosition = _deactivatedPosition;
+            _isFreeToInteract = true;
+        }
+
+        public void SetupToPressed()
+        {
+            _isFreeToInteract = false;
+
+            MoveTween(_activatedPosition);
+
+            Activation();
+        }
+
+        public void FreeToInteract()
+        {
+            _isFreeToInteract = true;
+
+            MoveTween(_deactivatedPosition);
+
+            Deactivation();
         }
 
         private void OnDrawGizmos()
