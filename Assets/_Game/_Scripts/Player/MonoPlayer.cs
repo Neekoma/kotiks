@@ -38,9 +38,21 @@ public class MonoPlayer : MonoBehaviour
     private float _movementSpeed;
 
     [SerializeField]
+    private float _ladderSpeed;
+
+    [SerializeField]
     private float _jumpForce;
 
     private bool _isGrounded;
+
+
+
+
+    private bool _isOnLadder;
+
+
+
+
 
 
     private void Awake()
@@ -55,7 +67,8 @@ public class MonoPlayer : MonoBehaviour
     {
         _input.HandleInput();
 
-        if (_input.jump == true) {
+        if (_input.jump == true)
+        {
             Jump();
         }
     }
@@ -67,22 +80,63 @@ public class MonoPlayer : MonoBehaviour
         Move();
     }
 
-    private void CheckGround() {
+    private void CheckGround()
+    {
         _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, _groundCheckRadius, _whatIsGround);
     }
 
     private void Move()
     {
-        _rb.velocity = new Vector2(_input.moveDirection * _movementSpeed, _rb.velocity.y);
+        if (!_isOnLadder)
+            _rb.velocity = new Vector2(_input.moveDirection * _movementSpeed, _rb.velocity.y);
+
+        else
+        {
+            _rb.MovePosition(transform.position + new Vector3(_input.moveDirection, _input.ladderDirection) * _ladderSpeed * Time.fixedDeltaTime);
+            _rb.velocity = Vector2.zero;
+        }
     }
 
     private void Jump()
     {
-        if (_isGrounded)
+        if (_isGrounded || _isOnLadder)
         {
+            if (_rb.isKinematic == true)
+                _rb.isKinematic = false;
+
+            _isOnLadder = false;
+
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ladder")
+        {
+            _isOnLadder = true;
+            _rb.isKinematic = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ladder")
+        {
+            _isOnLadder = false;
+            _rb.isKinematic = false;
+        }
+    }
+
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Ladder")
+    //    {
+    //        _isOnLadder = true;
+    //        _rb.isKinematic = true;
+    //    }
+    //}
+
 
     public enum PlayerType { First, Second }
 }

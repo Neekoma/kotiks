@@ -52,12 +52,6 @@ namespace Vald
             StartSetup();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.G))
-                FreeToInteract();
-        }
-
         private void FixedUpdate()
         {
             CheckPressure();

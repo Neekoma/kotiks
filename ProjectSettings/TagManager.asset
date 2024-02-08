@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interactible
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -16,12 +17,12 @@ TagManager:
   - 
   - Ground
   - Enemy
-  - Player
+  - 
   - InspectObject
   - PostProcessing
   - TrapsAndActivators
   - InteractedObjects
-  - 
+  - Player
   - 
   - 
   - 
@@ -57,9 +58,12 @@ TagManager:
   - name: TrapsAndActivators
     uniqueID: 813247263
     locked: 0
-  - name: Player
+  - name: 
     uniqueID: 1656354355
     locked: 0
   - name: InteractedObjects
     uniqueID: 1917986899
+    locked: 0
+  - name: Player
+    uniqueID: 4042181963
     locked: 0
