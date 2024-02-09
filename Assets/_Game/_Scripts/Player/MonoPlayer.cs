@@ -46,13 +46,7 @@ public class MonoPlayer : MonoBehaviour
     private bool _isGrounded;
 
 
-
-
     private bool _isOnLadder;
-
-
-
-
 
 
     private void Awake()
@@ -62,6 +56,7 @@ public class MonoPlayer : MonoBehaviour
         else
             _input = new SecondPlayerInputHandler();
     }
+
 
     private void Update()
     {
@@ -73,6 +68,7 @@ public class MonoPlayer : MonoBehaviour
         }
     }
 
+
     private void FixedUpdate()
     {
         CheckGround();
@@ -80,10 +76,12 @@ public class MonoPlayer : MonoBehaviour
         Move();
     }
 
+
     private void CheckGround()
     {
         _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, _groundCheckRadius, _whatIsGround);
     }
+
 
     private void Move()
     {
@@ -96,6 +94,7 @@ public class MonoPlayer : MonoBehaviour
             _rb.velocity = Vector2.zero;
         }
     }
+
 
     private void Jump()
     {
@@ -110,6 +109,7 @@ public class MonoPlayer : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Ladder")
@@ -119,6 +119,7 @@ public class MonoPlayer : MonoBehaviour
         }
     }
 
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Ladder")
@@ -127,16 +128,6 @@ public class MonoPlayer : MonoBehaviour
             _rb.isKinematic = false;
         }
     }
-
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Ladder")
-    //    {
-    //        _isOnLadder = true;
-    //        _rb.isKinematic = true;
-    //    }
-    //}
-
 
     public enum PlayerType { First, Second }
 }
