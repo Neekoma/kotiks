@@ -4,7 +4,7 @@
 [RequireComponent(typeof(MonoPlayerAnimation))]
 public class MonoPlayer : MonoBehaviour
 {
-    private Player _meta;
+    private Player _rawPlayer;
 
     private PlayerInputHandler _input;
 
@@ -45,9 +45,9 @@ public class MonoPlayer : MonoBehaviour
 
     private bool _isGrounded;
 
-
     private bool _isOnLadder;
 
+    private bool _isInCage; // Block movement if kot in a cage
 
     private void Awake()
     {
@@ -128,6 +128,9 @@ public class MonoPlayer : MonoBehaviour
             _rb.isKinematic = false;
         }
     }
+
+    public bool isInCage => _isInCage;
+    public Player rawPlayer => _rawPlayer;
 
     public enum PlayerType { First, Second }
 }
