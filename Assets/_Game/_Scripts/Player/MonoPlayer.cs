@@ -5,6 +5,52 @@ namespace Vald
 {
     [RequireComponent(typeof(MonoPlayerAnimation))]
     public class MonoPlayer : MonoBehaviour
+    private Player _rawPlayer;
+
+    private PlayerInputHandler _input;
+
+    [Header("Ground check")]
+    [Space(5)]
+    [SerializeField]
+    private Transform _groundCheck;
+
+    [SerializeField]
+    private float _groundCheckRadius;
+
+    [SerializeField]
+    private LayerMask _whatIsGround;
+
+
+    [Header("Player properties")]
+    [Space(5)]
+    [SerializeField]
+    private PlayerType _playerType;
+
+    [SerializeField]
+    private SpriteRenderer _spriteRenderer;
+
+    [SerializeField]
+    private Rigidbody2D _rb;
+
+    [Header("Movement")]
+    [Space(5)]
+
+    [SerializeField]
+    private float _movementSpeed;
+
+    [SerializeField]
+    private float _ladderSpeed;
+
+    [SerializeField]
+    private float _jumpForce;
+
+    private bool _isGrounded;
+
+    private bool _isOnLadder;
+
+    private bool _isInCage; // Block movement if kot in a cage
+
+    private void Awake()
     {
         private PlayerInputHandler _input;
 
@@ -172,4 +218,8 @@ namespace Vald
 
         public enum PlayerType { First, Second }
     }
+    public bool isInCage => _isInCage;
+    public Player rawPlayer => _rawPlayer;
+
+    public enum PlayerType { First, Second }
 }

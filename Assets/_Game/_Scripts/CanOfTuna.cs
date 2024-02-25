@@ -6,9 +6,9 @@ namespace Vald
 {
     public class CanOfTuna : InteractableObject
     {
-        public override void Interact()
+        public override void Interact(Player player)
         {
-           
+                      
         }
     }
 }
