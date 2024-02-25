@@ -41,21 +41,25 @@ namespace Vald
             OnActivation?.Invoke();
         }
 
+
         public override void Deactivation()
         {
             _isActive = false;
             OnDeactivation?.Invoke();
         }
 
+
         private void Start()
         {
             StartSetup();
         }
 
+
         private void FixedUpdate()
         {
             CheckPressure();
         }
+
 
         private void CheckPressure()
         {
@@ -77,6 +81,7 @@ namespace Vald
             }
         }
 
+
         private void MoveTween(Vector2 target)
         {
             if (DOTween.IsTweening(target))
@@ -84,6 +89,7 @@ namespace Vald
 
             transform.DOLocalMove(target, 1);
         }
+
 
         private void StartSetup()
         {
@@ -93,11 +99,13 @@ namespace Vald
                 SetupToDefault();
         }
 
+
         private void SetupToDefault()
         {
             transform.localPosition = _deactivatedPosition;
             _isFreeToInteract = true;
         }
+
 
         public void SetupToPressed()
         {
@@ -108,6 +116,7 @@ namespace Vald
             Activation();
         }
 
+
         public void FreeToInteract()
         {
             _isFreeToInteract = true;
@@ -117,23 +126,26 @@ namespace Vald
             Deactivation();
         }
 
+
         private void OnDrawGizmos()
         {
             Gizmos.DrawSphere(transform.position, _overlapRadius);
         }
-
     }
 
+#if UNITY_EDITOR
     [CustomEditor(typeof(ButtonActivator))]
     public class ButtonActivatorEditor : Editor
     {
 
         private ButtonActivator _target;
 
+
         private void OnEnable()
         {
             _target = (ButtonActivator)target;
         }
+
 
         public override void OnInspectorGUI()
         {
@@ -158,8 +170,8 @@ namespace Vald
             {
                 SetToPosition(serializedObject.FindProperty("_activatedPosition").vector2Value);
             }
-
         }
+
 
         private void WritePosition(Vector2 value, byte position)
         {
@@ -176,6 +188,7 @@ namespace Vald
             serializedObject.ApplyModifiedProperties();
         }
 
+
         private void SetToPosition(Vector2 target)
         {
             _target.transform.localPosition = (Vector3)target;
@@ -183,5 +196,6 @@ namespace Vald
             serializedObject.ApplyModifiedProperties();
         }
     }
+#endif
 }
 

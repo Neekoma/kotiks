@@ -27,21 +27,12 @@ namespace Vald
         private float spriteHeight => _renderer.size.y;
 
 
-       
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.H))
-                MoveToBottom();
-            if (Input.GetKeyDown(KeyCode.J))
-                MoveToTop();
-        }
-
         public void MoveToTop() {
 
             StopAllCoroutines();
             StartCoroutine(MoveCoroutine(1));
         }
+
 
         public void MoveToBottom()
         {
@@ -71,15 +62,12 @@ namespace Vald
                 if(direction == 1)
                     deltaPos = -deltaPos;
 
-
                 Vector2 newSize = new Vector2(1, spriteHeight + deltaPos * 2);
 
                 _renderer.size = newSize;
 
                 yield return new WaitForEndOfFrame();
-
             }
-
 
             if (direction == 0)
             {
@@ -88,9 +76,6 @@ namespace Vald
             }
             else
                 _renderer.size = Vector2.one;
-
-
-
 
             yield return null;
         }

@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-
-[RequireComponent(typeof(Animator))]
-public class MonoPlayerAnimation : MonoBehaviour
+namespace Vald
 {
+    [RequireComponent(typeof(Animator))]
+    public class MonoPlayerAnimation : MonoBehaviour
+    {
 
 
+    }
 }

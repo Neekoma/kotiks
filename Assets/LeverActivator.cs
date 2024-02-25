@@ -60,23 +60,6 @@ namespace Vald
 
                 OnRightPosition?.Invoke();
             }
-
-        }
-
-
-        public void TestRight()
-        {
-            Debug.Log("Right");
-        }
-
-        public void TestLeft()
-        {
-            Debug.Log("Left");
-        }
-
-        public void TestNeutral()
-        {
-            Debug.Log("Neutral");
         }
     }
 }

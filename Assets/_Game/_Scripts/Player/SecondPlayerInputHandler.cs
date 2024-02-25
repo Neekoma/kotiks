@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 
-public class SecondPlayerInputHandler : PlayerInputHandler
+namespace Vald
 {
-    public override void HandleInput()
+    public class SecondPlayerInputHandler : PlayerInputHandler
     {
-        moveDirection = Input.GetAxis("Player2");
-        ladderDirection = Input.GetAxisRaw("Player2_Ladder");
-        jump = Input.GetKeyDown(KeyCode.RightControl);
+        public override void HandleInput()
+        {
+            moveDirection = Input.GetAxis("Player2");
+            ladderDirection = Input.GetAxisRaw("Player2_Ladder");
+            jump = Input.GetKeyDown(KeyCode.RightControl);
+        }
     }
 }

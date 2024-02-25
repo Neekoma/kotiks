@@ -11,9 +11,6 @@ namespace Vald
 
     public class ActivatorException : System.Exception
     {
-        public ActivatorException(string message) : base(message)
-        {
-
-        }
+        public ActivatorException(string message) : base(message){}
     }
 }

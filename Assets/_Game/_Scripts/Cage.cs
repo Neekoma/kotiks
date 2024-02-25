@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 namespace Vald
 {
     public class Cage : InteractableObject

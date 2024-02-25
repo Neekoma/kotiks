@@ -1,8 +1,11 @@
-﻿public abstract class PlayerInputHandler
+﻿namespace Vald
 {
-    public float moveDirection { get; protected set; }
-    public float ladderDirection { get; protected set; }
-    public bool jump { get; protected set; }
+    public abstract class PlayerInputHandler
+    {
+        public float moveDirection { get; protected set; }
+        public float ladderDirection { get; protected set; }
+        public bool jump { get; protected set; }
 
-    public abstract void HandleInput();
+        public abstract void HandleInput();
+    }
 }

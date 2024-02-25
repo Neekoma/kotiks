@@ -37,6 +37,7 @@ namespace Vald
                 throw new ActivatorException("Timer should have at lest 1 time period");
         }
 
+
         private void Start()
         {
             _currentPeriod = _startPeriod;
@@ -45,15 +46,18 @@ namespace Vald
                 StartTimer();
         }
 
+
         private void OnEnable()
         {
             OnTimerTick.AddListener(HandleTimerTick);
         }
 
+
         private void OnDisable()
         {
             OnTimerTick.RemoveListener(HandleTimerTick);
         }
+
 
         public void StartTimer()
         {
@@ -63,11 +67,13 @@ namespace Vald
             _timerCoroutine = StartCoroutine(TimerCoroutine());
         }
 
+
         public void InterruptTimer()
         {
             StopCoroutine(_timerCoroutine);
             OnTimerInterrupted?.Invoke();
         }
+
 
         private void HandleTimerTick(byte period)
         {
